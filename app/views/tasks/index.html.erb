@@ -1,6 +1,7 @@
 <h1>ログインユーザー</h1>
 <p>現在 <%= current_user.name %> がログインしています</p>
 <p>メール：<%= current_user.email %></p>
+<%= image_tag(current_user.icon, size: '300x200') if current_user.icon.attached? %><br />
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %><br>
 <%= link_to "プロフィール編集", edit_user_registration_path %>
 
