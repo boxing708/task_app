@@ -12,4 +12,52 @@
  *
  */
  @import "bootstrap";
+
+ @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700;900&family=Sora:wght@400;700&display=swap");
+
  @import 'tasks';
+
+ :root {
+   --primary: #0d6efd;
+   --dark: #21252f;
+   --body: #888;
+   /* --orange: rgb(221, 155, 94); */
+   --box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+ }
+
+ body {
+   font-family: Sora, "sans-serif";
+   line-height: 1.7;
+   color: var(--body);
+ }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+a {
+  color: var(--dark);
+  text-decoration: none;
+}
+
+ .navbar .nav-link {
+   /* importantをつけると最優先にされる */
+   color: #fff !important;
+   font-size: 14px;
+   font-weight: 700;
+   padding-top: 16px;
+ }
+
+ .navbar-toggler{
+  border-color: #ffffff;
+}
+
+.navbar-toggler{
+  background-color: white;
+}
