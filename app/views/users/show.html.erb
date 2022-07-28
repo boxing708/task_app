@@ -1,0 +1,11 @@
+<div class="vh-100 d-flex">
+  <div class="container text-center">
+    <h1 class="my-4">User Detail</h1>
+
+    <div class="">
+      <%= image_tag(@user.icon,size: "500x400", class: "img-fluid") if @user.icon.attached? %><br />
+      <h2 class="my-4"><%= @user.name %></h2>
+      <p><%= @user.email %></p>
+    </div>
+  </div>
+</div>

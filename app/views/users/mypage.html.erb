@@ -1,0 +1,9 @@
+<div class="d-flex">
+  <div class="container text-center">
+    <h2 class="my-5">Hello, <%= current_user.name %> さん</h2>
+    <p>メールアドレス： <%= current_user.email %></p>
+    <%= image_tag(current_user.icon, size: '300x200') if current_user.icon.attached? %><br />
+    <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-success text-white my-4" %>
+    <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-dark mt-2" %>
+  </div>
+</div>
