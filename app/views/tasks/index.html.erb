@@ -10,8 +10,9 @@
       <div class="col-xs-12 col-md-5 task-panel">
         <h2><%= task.title %></h2>
         <p><%= task.content %></p>
-        <p><%= task.status %></p>
-        <p><%= task.deadline %></p>
+        <p>期限：<%= task.deadline %></p>
+        <p>担当者：<%= task.user.name %></p>
+        <p>ステータス：<%= task.status %></p>
         <div class="blog-links">
           <%= link_to 'Show', task, class: 'btn btn-default' %>
           <%= link_to 'Edit', edit_task_path(task), class: 'btn btn-info' %> |
