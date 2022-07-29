@@ -46,6 +46,20 @@ a {
   text-decoration: none;
 }
 
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 150px;/*←footerの高さ:137.2px*/
+  box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+
  .navbar .nav-link {
    /* importantをつけると最優先にされる */
    color: #fff !important;
