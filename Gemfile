@@ -45,6 +45,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 
 gem "kaminari"
+gem 'bootstrap4-kaminari-views'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
