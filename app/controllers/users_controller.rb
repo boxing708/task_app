@@ -10,6 +10,10 @@ class UsersController < ApplicationController
   def mypage
   end
 
+  def mytask
+    @tasks = current_user.tasks.page(params[:page])
+  end
+
   private
 
     def set_user
