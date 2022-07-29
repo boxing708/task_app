@@ -15,6 +15,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id #タスクを作成した人 = 現在ログインしているユーザー
     respond_to do |format|
       if @task.save
         NoticeMailer.sendmail_task(@task).deliver
