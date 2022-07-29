@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tasks = Task.includes(:user)
+    @tasks = Task.index_all.page(params[:page])
   end
 
   def show
