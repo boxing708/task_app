@@ -16,3 +16,26 @@
 <%= link_to 'Edit', edit_task_path(@task), class: "btn btn-primary text-white mt-3 me-2" %>
 <%= link_to 'Back', tasks_path, class: "btn btn-outline-dark mt-3 me-2" %>
 <%= link_to 'アサイン', assign_task_path, class: "btn btn-success mt-3" %>
+
+<h1 class="my-5">New Comment</h1>
+
+    <%= form_with(model:[@task, @comment], local: true) do |f| %>
+      <div class="field">
+        <%= f.text_area :content, :size=>"60x3",placeholder: "コメントする" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Comment", class: "btn btn-success mb-4" %>
+      </div>
+    <% end %>
+
+    <h1 class="my-5">Comments</h1>
+    <div class="row">
+      <% @comments.each do |comment| %>
+        <div class="col-xs-12 col-md-6 task-panel">
+          <h2><%= comment.content %></h2>
+          <p>Written by <%= comment.user.name %></p>
+          <p><%= comment.created_at %></p>
+          <%= link_to 'Destroy', [comment.task, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger  text-white' %>
+        </div>
+      <% end %>
+    </div>

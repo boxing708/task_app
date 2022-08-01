@@ -7,6 +7,8 @@ class TasksController < ApplicationController
   end
 
   def show
+    @comments = @task.comments.includes(:user).page(params[:page])
+    @comment = Comment.new
   end
 
   def new
