@@ -4,8 +4,8 @@
 
 <%= form_with(model: @task, method: :patch, url: task_path) do |form| %>
   <%= form.label :user_id, "新しくアサインするユーザ" %><br>
-  <%= form.collection_select :user_id, User.all, :id, :name %>
-  <%= form.submit %>
+  <%= form.collection_select :user_id, User.all, :id, :name, {}, {class: 'form-control'} %><br>
+  <%= form.submit class: "btn btn-success mt-3" %>
 <% end %>
 
 <div class="col-xs-7 mt-5 task-panel">
