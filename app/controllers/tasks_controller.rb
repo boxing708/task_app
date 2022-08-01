@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy assign ]
   before_action :authenticate_user!
 
   def index
@@ -31,6 +31,9 @@ class TasksController < ApplicationController
   def edit
   end
 
+  def assign
+  end
+
   def update
     respond_to do |format|
       if @task.update(task_params)
@@ -60,6 +63,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :content, :deadline, :status)
+      params.require(:task).permit(:title, :content, :deadline, :status, :user_id)
     end
 end
