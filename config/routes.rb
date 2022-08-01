@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root :to => "tasks#index"
   devise_for :users
-  resources :tasks
+  resources :tasks do
+    member do
+      get :assign
+    end
+  end
   resources :users, :only => [:index, :show]
   get "mypage" => "users#mypage"
   get "mytask" => "users#mytask"
