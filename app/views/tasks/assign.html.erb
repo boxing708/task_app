@@ -11,7 +11,7 @@
 <div class="col-xs-7 mt-5 task-panel">
   <h2><%= @task.title %></h2>
   <p><%= @task.content %></p>
-  <p>期限：<%= @task.deadline %></p>
+  <p>期限：<%= @task.deadline.to_date.strftime("%Y年 %m月 %d日") %></p>
   <p>担当者：<%= @task.user.name %></p>
   <p>ステータス：<%= @task.status %></p>
 </div>

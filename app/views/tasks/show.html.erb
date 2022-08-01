@@ -5,7 +5,7 @@
   <%= @task.content %>
 </div>
 <div>
-  期限:<%= @task.deadline %>
+  期限:<%= @task.deadline.to_date.strftime("%Y年 %m月 %d日") %>
 </div>
 <div>
   担当者:<%= @task.user.name %>
