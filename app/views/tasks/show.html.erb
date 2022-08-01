@@ -1,41 +1,54 @@
-<h1>
-  <%= @task.title %>
-</h1>
-<div>
-  <%= @task.content %>
-</div>
-<div>
-  期限:<%= @task.deadline.to_date.strftime("%Y年 %m月 %d日") %>
-</div>
-<div>
-  担当者:<%= @task.user.name %>
-</div>
-<div>
-  ステータス:<%= @task.status %>
-</div>
-<%= link_to 'Edit', edit_task_path(@task), class: "btn btn-primary text-white mt-3 me-2" %>
-<%= link_to 'Back', tasks_path, class: "btn btn-outline-dark mt-3 me-2" %>
-<%= link_to 'アサイン', assign_task_path, class: "btn btn-success mt-3" %>
+<div class="container">
 
-<h1 class="my-5">New Comment</h1>
+  <h1 class="my-3"><%= @task.title %></h1>
+
+  <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>内容</td>
+          <td><%= @task.content %></td>
+        </tr>
+        <tr>
+          <td>期限</td>
+          <td><%= @task.deadline.to_date.strftime("%Y年 %m月 %d日") %></td>
+        </tr>
+        <tr>
+          <td>担当者</td>
+          <td><%= @task.user.name %></td>
+        </tr>
+        <tr>
+          <td>ステータス</td>
+          <td><%= @task.status %></td>
+        </tr>
+      </tbody>
+    </table>
+
+  <%= link_to 'Edit', edit_task_path(@task), class: "btn btn-primary text-white mt-3 me-2" %>
+  <%= link_to 'アサイン', assign_task_path, class: "btn btn-success mt-3 me-2" %>
+  <%= link_to 'Back', tasks_path, class: "btn btn-outline-dark mt-3" %>
+
+  <div class="text-center">
+    <h1 class="my-5">New Comment</h1>
 
     <%= form_with(model:[@task, @comment], local: true) do |f| %>
-      <div class="field">
-        <%= f.text_area :content, :size=>"60x3",placeholder: "コメントする" %>
-      </div>
-      <div class="actions">
-        <%= f.submit "Comment", class: "btn btn-success mb-4" %>
-      </div>
+    <div class="field">
+      <%= f.text_area :content, :size=>"60x3",placeholder: "コメントする", class: "col-sm-10 col-12" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Comment", class: "btn btn-success my-4" %>
+    </div>
     <% end %>
 
     <h1 class="my-5">Comments</h1>
-    <div class="row">
+    <div class="row justify-content-between">
       <% @comments.each do |comment| %>
-        <div class="col-xs-12 col-md-6 task-panel">
-          <h2><%= comment.content %></h2>
-          <p>Written by <%= comment.user.name %></p>
-          <p><%= comment.created_at %></p>
-          <%= link_to 'Destroy', [comment.task, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger  text-white' %>
-        </div>
+      <div class="col-12 col-md-5 task-panel">
+        <h2><%= comment.content %></h2>
+        <p>Written by <%= comment.user.name %></p>
+        <p><%= comment.created_at %></p>
+        <%= link_to 'Destroy', [comment.task, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger  text-white' %>
+      </div>
       <% end %>
     </div>
+  </div>
+</div>
