@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
   has_one_attached :icon
   has_many :tasks, dependent: :destroy
+  has_many :comments
 end
