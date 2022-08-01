@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   root :to => "tasks#index"
   devise_for :users
   resources :tasks do
-    member do
-      get :assign
-    end
+    resources :comments, only: [:create, :destroy]
+    get :assign, on: :member
   end
   resources :users, :only => [:index, :show]
   get "mypage" => "users#mypage"
