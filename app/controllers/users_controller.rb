@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show ]
+  before_action :authenticate_user!
   def index
     @users = User.with_attached_icon
   end
