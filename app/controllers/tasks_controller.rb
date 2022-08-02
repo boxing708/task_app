@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy assign ]
+  before_action :ensure_user, only: %i[ edit update destroy assign ]
   before_action :authenticate_user!
 
   def index
@@ -58,6 +59,13 @@ class TasksController < ApplicationController
   end
 
   private
+
+    def ensure_user
+      @tasks = current_user.tasks
+      @task = @tasks.find_by(id: params[:id])
+      redirect_to tasks_url, alert: "権限がありません" unless @task
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
