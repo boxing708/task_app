@@ -62,8 +62,7 @@ class TasksController < ApplicationController
 
     def ensure_user
       @tasks = current_user.tasks
-      @task = @tasks.find_by(id: params[:id])
-      redirect_to tasks_url, alert: "権限がありません" unless @task
+      redirect_to tasks_url, alert: "権限がありません" unless @tasks.exists?(id: params[:id])
     end
 
     # Use callbacks to share common setup or constraints between actions.
