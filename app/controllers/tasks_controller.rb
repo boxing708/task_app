@@ -70,6 +70,8 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to tasks_url, alert: "存在しないタスクです。"
     end
 
     # Only allow a list of trusted parameters through.
