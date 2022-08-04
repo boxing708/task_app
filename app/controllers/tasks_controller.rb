@@ -4,8 +4,9 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @incomplete_tasks = Task.index_all.where.not(status: "完了").page(params[:page])
-    @complete_tasks = Task.index_all.where(status: "完了").page(params[:page])
+    tasks = Task.index_all
+    @incomplete_tasks = tasks.where.not(status: "完了").page(params[:page])
+    @complete_tasks = tasks.where(status: "完了").page(params[:page])
   end
 
   def show
