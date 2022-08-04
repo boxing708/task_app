@@ -1,7 +1,7 @@
 <div class="d-flex">
   <div class="container">
 
-    <h2 class="mt-5">Sign up</h2>
+    <h2 class="mt-5"><%= t('.sign_up') %></h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
@@ -14,7 +14,7 @@
       <div class="field">
         <%= f.label :password %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password", class: "col-sm-12 col-12" %>
       </div>
@@ -25,7 +25,7 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "Sign up", class: "btn btn-primary my-3" %>
+        <%= f.submit t('.sign_up'), class: "btn btn-primary my-3" %>
       </div>
     <% end %>
 

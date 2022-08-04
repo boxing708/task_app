@@ -1,7 +1,7 @@
 <div class="d-flex">
   <div class="container">
 
-    <h2 class="mt-5">Log in</h2>
+    <h2 class="mt-5"><%= t('.sign_in') %></h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
@@ -22,7 +22,7 @@
       <% end %>
 
       <div class="actions">
-        <%= f.submit "Log in", class: "btn btn-primary my-3" %>
+        <%= f.submit t('.sign_in'), class: "btn btn-primary my-3" %>
       </div>
     <% end %>
 
