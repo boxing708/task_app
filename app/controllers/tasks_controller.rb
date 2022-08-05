@@ -24,7 +24,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         NoticeMailer.sendmail_task(@task).deliver
-        format.html { redirect_to task_url(@task), notice: "タスクが作成されました" }
+        format.html { redirect_to task_url(@task), notice: t("flash.create", model: "タスク") }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to task_url(@task), notice: "タスクが更新されました" }
+        format.html { redirect_to task_url(@task), notice: t("flash.update", model: "タスク") }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "タスクが削除されました" }
+      format.html { redirect_to tasks_url, notice: t("flash.destroy", model: "タスク") }
       format.json { head :no_content }
     end
   end
@@ -64,14 +64,14 @@ class TasksController < ApplicationController
 
     def ensure_user
       @tasks = current_user.tasks
-      redirect_to tasks_url, alert: "権限がありません" unless @tasks.exists?(id: params[:id])
+      redirect_to tasks_url, alert: t("flash.unauthorized") unless @tasks.exists?(id: params[:id])
     end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
     rescue ActiveRecord::RecordNotFound => e
-      redirect_to tasks_url, alert: "存在しないタスクです。"
+      redirect_to tasks_url, alert: t("flash.not_exits", model: "タスク")
     end
 
     # Only allow a list of trusted parameters through.
