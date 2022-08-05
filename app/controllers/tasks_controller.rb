@@ -23,7 +23,6 @@ class TasksController < ApplicationController
     @task.user_id = current_user.id #タスクを作成した人 = 現在ログインしているユーザー
     respond_to do |format|
       if @task.save
-        NoticeMailer.sendmail_task(@task).deliver
         format.html { redirect_to task_url(@task), notice: t("flash.create", model: "タスク") }
         format.json { render :show, status: :created, location: @task }
       else
