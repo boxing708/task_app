@@ -20,5 +20,7 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to users_url, alert: t("flash.unauthorized")
     end
 end
