@@ -4,7 +4,11 @@
 
     <%= render 'form', task: @task %>
 
-    <%= link_to 'Show', @task, class: "btn btn-outline-dark mt-3 me-2" %>
-    <%= link_to 'Back', tasks_path, class: "btn btn-outline-dark mt-3" %>
+    <%= link_to @task, class: "btn btn-outline-dark mt-3 me-2" do %>
+      <i class="fa-solid fa-circle-info"></i> 詳細
+    <% end %>
+    <%= link_to tasks_path, class: "btn btn-outline-dark mt-3" do %>
+      <i class="fa-solid fa-backward-step"></i> 戻る
+    <% end %>
   </div>
 </div>
