@@ -2,7 +2,9 @@
   <h1 class="my-3"><%= title %></h1>
 
   <div id="new-task-link">
-    <%= link_to '新規タスクを作成する', new_task_path, class: "btn btn-outline-dark" %>
+    <%= link_to new_task_path, class: "btn btn-outline-dark" do %>
+      <i class="fa-solid fa-plus"></i> 新規タスクを作成する
+    <% end %>
   </div>
 
   <div class="row justify-content-between">

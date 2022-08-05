@@ -24,10 +24,16 @@
     </table>
 
   <% if current_user == @task.user %>
-    <%= link_to '編集', edit_task_path(@task), class: "btn btn-primary text-white mt-3 me-2" %>
-    <%= link_to 'アサイン', assign_task_path, class: "btn btn-success mt-3 me-2" %>
+    <%= link_to edit_task_path(@task), class: "btn btn-primary text-white mt-3 me-2" do %>
+      <i class="fa-solid fa-pen"></i> 編集
+    <% end %>
+    <%= link_to assign_task_path, class: "btn btn-success mt-3 me-2" do %>
+      <i class="fa-solid fa-person"></i> アサイン
+    <% end %>
   <% end %>
-  <%= link_to '戻る', tasks_path, class: "btn btn-outline-dark mt-3" %>
+  <%= link_to tasks_path, class: "btn btn-outline-dark mt-3" do %>
+    <i class="fa-solid fa-backward-step"></i> 戻る
+  <% end %>
 
   <div class="text-center">
     <h1 class="my-5">New Comment</h1>
