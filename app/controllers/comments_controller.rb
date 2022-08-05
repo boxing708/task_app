@@ -1,11 +1,8 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
-    @task = Task.find(params[:task_id])
-    @comment.task_id = @task.id
+    @comment = current_user.comments.new(comment_params)
 
-    if @comment.save
+    if @comment.save!
       redirect_back(fallback_location: root_path)
     else
       redirect_back(fallback_location: root_path)
