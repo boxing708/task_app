@@ -3,6 +3,8 @@
     <h1 class="my-5">新規タスク</h1>
 
     <%= render 'form', task: @task %>
-    <%= link_to 'Back', tasks_path, class: "btn btn-outline-dark mt-3" %>
+    <%= link_to tasks_path, class: "btn btn-outline-dark mt-3" do %>
+      <i class="fa-solid fa-backward-step"></i> 戻る
+    <% end %>
   </div>
 </div>
