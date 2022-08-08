@@ -16,6 +16,7 @@ ja:
           attributes:
             content:
               blank: "が空になっています。入力してください。"
+              too_long: "は255文字以内にしてください。"
     models:
       task: "タスク"
       comment: "コメント"
