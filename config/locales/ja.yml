@@ -32,3 +32,9 @@ ja:
       create: 登録する
       update: 更新する
       submit: 保存する
+  flash:
+    create: "%{model}が作成されました。"
+    update: "%{model}が更新されました。"
+    destroy: "%{model}が削除されました。"
+    unauthorized: "権限がありません。"
+    not_exits: "存在しない%{model}です。"
