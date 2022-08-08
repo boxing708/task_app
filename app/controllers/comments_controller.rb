@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     end
 
   rescue ActiveRecord::RecordInvalid => e
-    flash[:alert] = e.record.errors.full_messages
+    flash[:alert] = e.record.errors.full_messages.join("\n")
     redirect_back(fallback_location: root_path)
   end
 
