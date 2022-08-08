@@ -20,5 +20,5 @@
 //= require bootstrap-sprockets
 
 $(function(){
-  setTimeout("$('.alert').fadeOut('slow')", 2000);
+  setTimeout("$('.alert').fadeOut('slow')", 4000);
 });
