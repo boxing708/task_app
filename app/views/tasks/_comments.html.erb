@@ -1,10 +1,10 @@
 <h1 class="my-5">Comments</h1>
-<div class="row justify-content-between">
+<div class="row">
   <% comments.each do |comment| %>
-  <div class="col-12 col-md-5 task-panel">
-    <h2><%= comment.content %></h2>
-    <p>Written by <%= comment.user.name %></p>
-    <p><%= comment.created_at %></p>
+  <div class="col-12 d-md-flex shadow bg-body p-3 my-3 rounded align-items-center">
+    <h2 class="me-md-5"><%= comment.content %></h2>
+    <p class="me-md-5">Written by <%= comment.user.name %></p>
+    <p class="me-md-auto"><%= comment.created_at.to_date.strftime("%Y年 %m月 %d日") %></p>
     <%= link_to 'Destroy', [comment.task, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger  text-white' %>
   </div>
   <% end %>
