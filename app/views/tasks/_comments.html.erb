@@ -2,6 +2,7 @@
 <div class="row">
   <% comments.each do |comment| %>
   <div class="col-12 d-md-flex shadow bg-body p-3 my-3 rounded align-items-center">
+    <%= image_tag(comment.user.icon, size: '60x60', class: "rounded-circle shadow-1-strong me-3") if comment.user.icon.attached? %>
     <h5 class="me-md-5"><%= comment.content %></h5>
     <p class="me-md-5">Written by <%= comment.user.name %></p>
     <p class="me-md-auto"><%= comment.created_at.to_date.strftime("%Y年 %m月 %d日") %></p>
