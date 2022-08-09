@@ -5,7 +5,7 @@ class Task < ApplicationRecord
   validates :status, presence: true
   paginates_per 4
   scope :index_all, -> {
-    select(:id, :title, :content, :deadline, :status, :user_id)
+    select(:id, :title, :content, :deadline, :status, :user_id, :priority)
     .includes(:user)
   }
   belongs_to :user
