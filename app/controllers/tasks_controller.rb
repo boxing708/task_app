@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @comments = @task.comments.includes(:user).page(params[:page])
+    @comments = @task.comments.includes(user: { icon_attachment: :blob }).page(params[:page])
     @comment = Comment.new
   end
 
