@@ -23,15 +23,12 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id #タスクを作成した人 = 現在ログインしているユーザー
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to task_url(@task), notice: t("flash.create", model: "タスク") }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.save!
+      redirect_to task_url(@task), notice: t("flash.create", model: "タスク")
     end
+
+  rescue ActiveRecord::RecordInvalid
+    render :new
   end
 
   def edit
@@ -41,15 +38,12 @@ class TasksController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to task_url(@task), notice: t("flash.update", model: "タスク") }
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.update!(task_params)
+      redirect_to task_url(@task), notice: t("flash.update", model: "タスク")
     end
+
+  rescue ActiveRecord::RecordInvalid
+    render :edit
   end
 
   def destroy
