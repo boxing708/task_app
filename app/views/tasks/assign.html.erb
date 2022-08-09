@@ -6,7 +6,7 @@
 
   <%= form_with(model: @task, method: :patch, url: task_path) do |form| %>
     <%= form.label :user_id, "新しくアサインするユーザ" %><br>
-    <%= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :name, {}, {class: 'form-control'} %><br>
+    <%= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :name, {}, {class: 'form-select'} %><br>
     <%= form.submit "アサイン", class: "btn btn-success mb-3" %>
   <% end %>
   <%= link_to task_path(@task), class: "btn btn-outline-dark mt-3" do %>
@@ -31,6 +31,18 @@
       <tr>
         <td>ステータス</td>
         <td><%= @task.status %></td>
+      </tr>
+      <tr>
+        <td>優先度</td>
+        <td>
+          <%if @task.priority == "low" %>
+            低
+          <% elsif @task.priority == "middle" %>
+            中
+          <% elsif @task.priority == "high" %>
+            高
+          <%end%>
+        </td>
       </tr>
     </tbody>
   </table>
