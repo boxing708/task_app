@@ -35,6 +35,11 @@
     <% end %>
   </div>
 
+  <div class="field">
+    <%= form.label :priority %><br>
+    <%= form.select :priority, [["低", "low"], ["中", "middle"], ["高", "high"]] %>
+  </div>
+
   <div class="actions">
     <%= form.submit :class=>"btn btn-success mt-2" %>
   </div>
