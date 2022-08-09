@@ -10,4 +10,5 @@ class Task < ApplicationRecord
   }
   belongs_to :user
   has_many :comments, dependent: :destroy
+  enum priority: { low: 0, middle: 1, high: 2 }
 end
