@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy assign ]
+  before_action :set_task, only: %i[ show edit update destroy assign assign_update ]
   before_action :ensure_user, only: %i[ edit update destroy assign ]
   before_action :authenticate_user!
 
@@ -35,6 +35,16 @@ class TasksController < ApplicationController
   end
 
   def assign
+  end
+
+  def assign_update
+    if @task.update!(task_params)
+      NoticeMailer.sendmail_task(@task).deliver
+      redirect_to task_url(@task), notice: t("flash.update", model: "タスク")
+    end
+
+  rescue ActiveRecord::RecordInvalid
+    render :assign
   end
 
   def update

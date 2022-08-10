@@ -4,7 +4,7 @@
   <p>現在アサインされているユーザ</p>
   <p><%= @task.user.name %></p>
 
-  <%= form_with(model: @task, method: :patch, url: task_path) do |form| %>
+  <%= form_with(model: @task, method: :patch, url: assign_task_path) do |form| %>
     <%= form.label :user_id, "新しくアサインするユーザ" %><br>
     <%= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :name, {}, {class: 'form-select'} %><br>
     <%= form.submit "アサイン", class: "btn btn-success mb-3" %>

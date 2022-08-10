@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :tasks do
     resources :comments, only: [:create, :destroy]
     get :assign, on: :member
+    patch "assign" => "tasks#assign_update", on: :member
   end
   get "complete_tasks" => "tasks#complete_tasks"
   resources :users, :only => [:index, :show]
