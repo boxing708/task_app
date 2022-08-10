@@ -37,10 +37,10 @@
 
   <div class="field">
     <%= form.label :priority %><br>
-    <%= form.select :priority, [["低", "low"], ["中", "middle"], ["高", "high"]] %>
+    <%= form.select :priority, [["低", "low"], ["中", "middle"], ["高", "high"]], {}, {class: 'form-select'} %>
   </div>
 
   <div class="actions">
-    <%= form.submit :class=>"btn btn-success mt-2" %>
+    <%= form.submit :class=>"btn btn-success mt-3" %>
   </div>
 <% end %>
