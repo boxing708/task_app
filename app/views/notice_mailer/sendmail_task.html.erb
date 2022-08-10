@@ -1,6 +1,10 @@
-<h1>新しくタスクが追加されました！</h1>
+<h3><%= @task.user.name %>さんにタスクがアサインされました。</h3>
 
-<p>title: <%= @task.title %></p>
-<p>content: <%= @task.content %></p>
-<p>deadline: <%= @task.deadline %></p>
-<p>status: <%= @task.status %></p>
+<h5>タスク詳細</h5>
+<p>タイトル: <%= @task.title %></p>
+<p>内容: <%= @task.content %></p>
+<p>期限: <%= @task.deadline.to_date.strftime("%Y年 %m月 %d日") %></p>
+<p>ステータス: <%= @task.status %></p>
+<p>優先度: <%= @task.translate_priority %></p>
+
+<p>上記ご確認の程、よろしくお願い致します。</p>
