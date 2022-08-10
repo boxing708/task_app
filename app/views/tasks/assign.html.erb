@@ -35,13 +35,7 @@
       <tr>
         <td>優先度</td>
         <td>
-          <%if @task.priority == "low" %>
-            低
-          <% elsif @task.priority == "middle" %>
-            中
-          <% elsif @task.priority == "high" %>
-            高
-          <%end%>
+          <%= @task.translate_priority %>
         </td>
       </tr>
     </tbody>

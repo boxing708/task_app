@@ -11,4 +11,13 @@ class Task < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   enum priority: { low: 0, middle: 1, high: 2 }
+  def translate_priority
+    if self.priority == "low"
+      "低"
+    elsif self.priority == "middle"
+      "中"
+    elsif self.priority == "high"
+      "高"
+    end
+  end
 end

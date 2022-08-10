@@ -24,13 +24,7 @@
           <p>担当者：<%= task.user.name %></p>
           <p>ステータス：<%= task.status %></p>
           <p>優先度：
-            <%if task.priority == "low" %>
-              低
-            <% elsif task.priority == "middle" %>
-              中
-            <% elsif task.priority == "high" %>
-              <span class="text-danger">高</span>
-            <%end%>
+            <%= task.translate_priority %>
           </p>
           <div class="blog-links">
             <%= link_to task, class: 'btn btn-outline-dark me-2' do %>
