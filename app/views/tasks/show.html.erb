@@ -20,6 +20,18 @@
           <td>ステータス</td>
           <td><%= @task.status %></td>
         </tr>
+        <tr>
+          <td>優先度</td>
+          <td>
+            <%if @task.priority == "low" %>
+              低
+            <% elsif @task.priority == "middle" %>
+              中
+            <% elsif @task.priority == "high" %>
+              高
+            <%end%>
+          </td>
+        </tr>
       </tbody>
     </table>
 

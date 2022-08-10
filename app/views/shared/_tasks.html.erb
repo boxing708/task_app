@@ -23,6 +23,15 @@
           <p>期限：<%= task.deadline.to_date.strftime("%Y年 %m月 %d日") %></p>
           <p>担当者：<%= task.user.name %></p>
           <p>ステータス：<%= task.status %></p>
+          <p>優先度：
+            <%if task.priority == "low" %>
+              低
+            <% elsif task.priority == "middle" %>
+              中
+            <% elsif task.priority == "high" %>
+              <span class="text-danger">高</span>
+            <%end%>
+          </p>
           <div class="blog-links">
             <%= link_to task, class: 'btn btn-outline-dark me-2' do %>
               <i class="fa-solid fa-circle-info"></i> 詳細
