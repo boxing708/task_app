@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="d-flex align-items-center">
+  <div class="d-md-flex align-items-center">
     <h1 class="my-3 me-auto"><%= title %></h1>
     <% if title == "タスク一覧" %>
       <%= link_to "完了タスク一覧", complete_tasks_path, class: "my-3 btn btn-outline-dark" %>
@@ -8,9 +8,15 @@
     <% end %>
   </div>
 
-  <div id="new-task-link">
-    <%= link_to new_task_path, class: "btn btn-outline-dark" do %>
+  <div id="new-task-link" class=" d-flex">
+    <%= link_to new_task_path, class: "btn btn-outline-dark align-self-start me-auto" do %>
       <i class="fa-solid fa-plus"></i> 新規タスクを作成する
+    <% end %>
+    <% if title == "マイタスク" %>
+      <div class="flex-column mt-2">
+        <p class="m-0">進捗：<%= current_user.tasks.count - incomplete_tasks.count %>/<%= current_user.tasks.count %></p>
+        <p>残り：<%= incomplete_tasks.count %></p>
+      </div>
     <% end %>
   </div>
 
