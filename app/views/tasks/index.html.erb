@@ -1,8 +1,1 @@
-<h1>タスク検索</h1>
-<%= search_form_for @q, url: search_tasks_path do |f| %>
-  <%= f.label :title_cont, 'タスクタイトル' %>
-  <%= f.search_field :title_cont %>
-  <br>
-  <%= f.submit '検索' %>
-<% end %>
 <%= render partial: "shared/tasks", locals: { title: "タスク一覧", incomplete_tasks: @incomplete_tasks, complete_tasks: @complete_tasks } %>
