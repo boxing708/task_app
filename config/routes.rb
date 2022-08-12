@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :users, :only => [:index, :show]
   get "mypage" => "users#mypage"
   get "mytask" => "users#mytask"
+  get "complete_mytasks" => "users#complete_mytasks"
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

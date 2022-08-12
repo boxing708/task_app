@@ -13,6 +13,9 @@ class UsersController < ApplicationController
 
   def mytask
     @incomplete_tasks = current_user.tasks.where.not(status: "完了").page(params[:page])
+  end
+
+  def complete_mytasks
     @complete_tasks = current_user.tasks.where(status: "完了").page(params[:page])
   end
 
