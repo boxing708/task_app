@@ -3,6 +3,8 @@
     <h1 class="my-3 me-auto"><%= title %></h1>
     <% if title == "タスク一覧" %>
       <%= link_to "完了タスク一覧", complete_tasks_path, class: "my-3 btn btn-outline-dark" %>
+    <% else %>
+      <%= link_to "完了マイタスク一覧", complete_mytasks_path, class: "my-3 btn btn-outline-dark" %>
     <% end %>
   </div>
 
