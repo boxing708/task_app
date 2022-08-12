@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :tasks do
     resources :comments, only: [:create, :destroy]
-    get :assign, on: :member
-    patch "assign" => "tasks#assign_update", on: :member
+    member do
+      get :assign
+      patch "assign" => "tasks#assign_update"
+    end
   end
   get "complete_tasks" => "tasks#complete_tasks"
   resources :users, :only => [:index, :show]
