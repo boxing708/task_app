@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy assign assign_update ]
   before_action :ensure_user, only: %i[ edit update destroy assign ]
+  before_action :set_q, only: %i[ index search ]
   before_action :authenticate_user!
 
   def index
@@ -66,7 +67,15 @@ class TasksController < ApplicationController
     end
   end
 
+  def search
+    @results = @q.result.includes(:user)
+  end
+
   private
+
+    def set_q
+      @q = Task.ransack(params[:q])
+    end
 
     def ensure_user
       @tasks = current_user.tasks
