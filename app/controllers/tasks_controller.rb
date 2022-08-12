@@ -27,7 +27,8 @@ class TasksController < ApplicationController
       redirect_to task_url(@task), notice: t("flash.create", model: "タスク")
     end
 
-  rescue ActiveRecord::RecordInvalid
+  rescue ActiveRecord::RecordInvalid => e
+    flash.now[:alert] = e.record.errors.full_messages.join("\n")
     render :new
   end
 
@@ -43,16 +44,16 @@ class TasksController < ApplicationController
       redirect_to task_url(@task), notice: "#{@task.user.name}さんにタスクがアサインされました。"
     end
 
-  rescue ActiveRecord::RecordInvalid
+  rescue ActiveRecord::RecordInvalid => e
+    flash.now[:alert] = e.record.errors.full_messages.join("\n")
     render :assign
   end
 
   def update
-    if @task.update!(task_params)
-      redirect_to task_url(@task), notice: t("flash.update", model: "タスク")
-    end
+    redirect_to task_url(@task), notice: t("flash.update", model: "タスク") if @task.update!(task_params)
 
-  rescue ActiveRecord::RecordInvalid
+  rescue ActiveRecord::RecordInvalid => e
+    flash.now[:alert] = e.record.errors.full_messages.join("\n")
     render :edit
   end
 
