@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       get :assign
       patch "assign" => "tasks#assign_update"
     end
+    collection do
+      get "search"
+    end
   end
   get "complete_tasks" => "tasks#complete_tasks"
   resources :users, :only => [:index, :show]
