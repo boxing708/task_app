@@ -21,8 +21,8 @@
     <% end %>
     <% if title == "マイタスク" %>
       <div class="flex-column mt-2">
-        <p class="m-0">進捗：<%= current_user.tasks.count - incomplete_tasks.count %>/<%= current_user.tasks.count %></p>
-        <p>残り：<%= incomplete_tasks.count %></p>
+        <p class="m-0">進捗状況：<%= current_user.tasks.count - incomplete_tasks.count %>/<%= current_user.tasks.count %>タスクが完了しています。</p>
+        <p>残り<%= incomplete_tasks.count %>タスクです。</p>
       </div>
     <% end %>
   </div>
