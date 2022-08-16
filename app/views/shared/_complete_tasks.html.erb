@@ -1,14 +1,6 @@
 <div class="container">
   <div class="row justify-content-between">
-    <div class="d-flex align-items-center">
-      <h1 class="my-3 me-auto"><%= title %></h1>
-      <% if title == "完了マイタスク" %>
-        <div class="flex-column mt-2">
-          <p class="m-0">進捗状況：<%= @complete_tasks.count %>/<%= current_user.tasks.count %>タスクが完了しています。</p>
-          <p>残り<%= current_user.tasks.count - @complete_tasks.count %>タスクです。</p>
-        </div>
-      <% end %>
-    </div>
+    <h1 class="my-3 me-auto"><%= title %></h1>
     <% @complete_tasks.each do |task| %>
       <div class="col-xs-12 col-md-5 px-0 task-panel border rounded border-secondary">
         <div class="text-break">
