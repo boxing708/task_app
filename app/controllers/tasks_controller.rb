@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @incomplete_tasks = Task.index_all.where.not(status: "完了").page(params[:page])
+    @incomplete_tasks = @q.result.index_all.where.not(status: "完了").page(params[:page])
   end
 
   def complete_tasks
@@ -68,7 +68,7 @@ class TasksController < ApplicationController
   end
 
   def search
-    @results = @q.result.includes(:user)
+    @results = @q.result.includes(:user).page(params[:page])
   end
 
   private
