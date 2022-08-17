@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       get :assign
       patch "assign" => "tasks#assign_update"
+      post "done" => "tasks#done"
     end
     collection do
       get "search"
