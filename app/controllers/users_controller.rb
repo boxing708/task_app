@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show ]
   before_action :authenticate_user!
+  before_action :set_q, only: %i[ mytask ]
+
   def index
     @users = User.with_attached_icon
   end
@@ -12,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def mytask
-    @incomplete_tasks = current_user.tasks.where.not(status: "完了").page(params[:page])
+    @incomplete_tasks = @q.result.where(user_id: current_user.id).includes(:user).where.not(status: "完了").page(params[:page])
   end
 
   def complete_mytasks
@@ -25,5 +27,9 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to users_url, alert: t("flash.unauthorized")
+    end
+
+    def set_q
+      @q = Task.ransack(params[:q])
     end
 end
