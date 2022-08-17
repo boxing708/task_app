@@ -43,7 +43,7 @@
           <p>優先度：
             <span class="<%= "text-danger" if task.priority == "high" %>"><%= task.translate_priority %></span>
           </p>
-          <div class="blog-links">
+          <div class="blog-links d-flex">
             <%= link_to task, class: 'btn btn-outline-dark me-2' do %>
               <i class="fa-solid fa-circle-info"></i> 詳細
             <% end %>
@@ -51,9 +51,10 @@
               <%= link_to edit_task_path(task), class: 'btn btn-info text-white me-2' do %>
                 <i class="fa-solid fa-pen"></i> 編集
               <% end %>
-              <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+              <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger me-auto' do %>
                 <i class="fa-solid fa-trash"></i> 削除
               <% end %>
+              <%= button_to '完了', done_task_path(task), method: :post, class: "btn btn-primary" %>
             <% end %>
           </div>
         </div>
