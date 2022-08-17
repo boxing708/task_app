@@ -3,6 +3,9 @@
     <h1 class="my-3 me-auto">検索結果</h1>
   </div>
 
+  <%= sort_link(@q, :priority, "優先度ソート", default_order: :desc) %>
+  <%= sort_link(@q, :deadline, "期限ソート") %>
+
   <div class="row justify-content-between">
     <% @results.each do |task| %>
       <div class="col-xs-12 col-md-5 px-0 task-panel border rounded <%=  Date.today > task.deadline ? "border-danger" : "border-success" %>">
@@ -33,5 +36,6 @@
         </div>
       </div>
     <% end %>
+    <%= paginate @results, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>
