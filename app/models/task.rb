@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   validates :content, presence: true, length: { maximum: 140 }
   validates :deadline, presence: true
   validates :status, presence: true
-  paginates_per 4
+  paginates_per 10
   scope :index_all, -> {
     select(:id, :title, :content, :deadline, :status, :user_id, :priority)
     .includes(:user)
