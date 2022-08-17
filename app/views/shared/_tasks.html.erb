@@ -48,13 +48,15 @@
               <i class="fa-solid fa-circle-info"></i> 詳細
             <% end %>
             <% if current_user == task.user %>
-              <%= link_to edit_task_path(task), class: 'btn btn-info text-white me-2' do %>
+              <%= link_to edit_task_path(task), class: 'btn btn-outline-dark me-2' do %>
                 <i class="fa-solid fa-pen"></i> 編集
               <% end %>
               <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger me-auto' do %>
                 <i class="fa-solid fa-trash"></i> 削除
               <% end %>
-              <%= button_to '完了', done_task_path(task), method: :post, class: "btn btn-primary" %>
+              <%= button_to done_task_path(task), method: :post, class: "btn btn-primary" do %>
+                <i class="fa-solid fa-circle-check"></i> 完了
+              <% end %>
             <% end %>
           </div>
         </div>
