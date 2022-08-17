@@ -59,12 +59,11 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
+    redirect_back fallback_location: root_path, notice: t("flash.destroy", model: "タスク") if @task.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to tasks_url, notice: t("flash.destroy", model: "タスク") }
-      format.json { head :no_content }
-    end
+  rescue ActiveRecord::RecordInvalid => e
+    flash.now[:alert] = e.record.errors.full_messages.join("\n")
+    redirect_back fallback_location: root_path
   end
 
   def done
