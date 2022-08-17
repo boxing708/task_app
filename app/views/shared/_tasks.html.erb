@@ -45,17 +45,17 @@
           </p>
           <div class="blog-links d-flex">
             <%= link_to task, class: 'btn btn-outline-dark me-2' do %>
-              <i class="fa-solid fa-circle-info"></i> 詳細
+              <i class="fa-solid fa-circle-info", data-toggle="tooltip", data-placement="top", title="詳細"></i>
             <% end %>
             <% if current_user == task.user %>
               <%= link_to edit_task_path(task), class: 'btn btn-outline-dark me-2' do %>
-                <i class="fa-solid fa-pen"></i> 編集
+                <i class="fa-solid fa-pen", data-toggle="tooltip", data-placement="top", title="編集"></i>
               <% end %>
               <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger me-auto' do %>
-                <i class="fa-solid fa-trash"></i> 削除
+                <i class="fa-solid fa-trash", data-toggle="tooltip", data-placement="top", title="削除"></i>
               <% end %>
               <%= button_to done_task_path(task), method: :post, class: "btn btn-primary" do %>
-                <i class="fa-solid fa-circle-check"></i> 完了
+                <i class="fa-solid fa-circle-check", data-toggle="tooltip", data-placement="top", title="完了"></i>
               <% end %>
             <% end %>
           </div>

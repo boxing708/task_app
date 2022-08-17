@@ -22,3 +22,7 @@
 $(function(){
   setTimeout("$('.alert').fadeOut('slow')", 4000);
 });
+
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip()
+})
