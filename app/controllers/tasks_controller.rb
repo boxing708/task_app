@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy assign assign_update ]
+  before_action :set_task, only: %i[ show edit update destroy assign assign_update done ]
   before_action :ensure_user, only: %i[ edit update destroy assign ]
-  before_action :set_q, only: %i[ index search ]
+  before_action :set_q, only: %i[ index search done ]
   before_action :authenticate_user!
 
   def index
@@ -65,6 +65,11 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_url, notice: t("flash.destroy", model: "タスク") }
       format.json { head :no_content }
     end
+  end
+
+  def done
+    @task.update(status: "完了")
+    redirect_back(fallback_location: root_path)
   end
 
   def search
