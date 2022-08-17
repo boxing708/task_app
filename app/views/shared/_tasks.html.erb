@@ -22,7 +22,7 @@
       <% end %>
     </div>
     <div class="me-3">
-      <%= sort_link(@q, :priority, "優先度ソート") %>
+      <%= sort_link(@q, :priority, "優先度ソート", default_order: :desc) %>
     </div>
     <div class="">
       <%= sort_link(@q, :deadline, "期限ソート") %>
