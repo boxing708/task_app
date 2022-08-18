@@ -1,6 +1,11 @@
 <div class="container">
   <div class="row justify-content-between">
-    <h1 class="my-3 me-auto"><%= title %></h1>
+    <div class="d-flex align-items-center">
+      <h1 class="my-3 me-auto"><%= title %></h1>
+      <%= link_to :back, class: "btn btn-outline-dark mt-3" do %>
+        <i class="fa-solid fa-backward-step"></i> 戻る
+      <% end %>
+    </div>
     <% @complete_tasks.each do |task| %>
       <div class="col-xs-12 col-md-5 px-0 task-panel border rounded border-secondary">
         <div class="text-break">
