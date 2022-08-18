@@ -1,16 +1,13 @@
 <div class="container">
   <div class="d-md-flex align-items-center">
-    <h1 class="my-3 me-auto"><%= title %></h1>
+    <h1 class="my-3 me-2"><%= title %></h1>
+    <%= link_to new_task_path, class: "btn btn-outline-dark align-self-start me-auto my-3" do %>
+      <i class="fa-solid fa-plus", data-toggle="tooltip", data-placement="top", title="新規タスクを作成する"></i>
+    <% end %>
     <% if title == "タスク一覧" %>
       <%= link_to "完了タスク一覧", complete_tasks_path, class: "my-3 btn btn-outline-dark" %>
     <% else %>
       <%= link_to "完了マイタスク一覧", complete_mytasks_path, class: "my-3 btn btn-outline-dark" %>
-    <% end %>
-  </div>
-
-  <div id="new-task-link" class="d-flex mb-3">
-    <%= link_to new_task_path, class: "btn btn-outline-dark align-self-start me-auto" do %>
-      <i class="fa-solid fa-plus"></i> 新規タスクを作成する
     <% end %>
   </div>
 
