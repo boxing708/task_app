@@ -3,48 +3,52 @@
   <h1 class="my-3"><%= @task.title %></h1>
 
   <table class="table table-striped my-5">
-      <tbody>
-        <tr>
-          <td>内容</td>
-          <td><%= @task.content %></td>
-        </tr>
-        <tr>
-          <td>期限</td>
-          <td><%= @task.deadline.to_date.strftime("%Y年 %m月 %d日") %></td>
-        </tr>
-        <tr>
-          <td>担当者</td>
-          <td><%= @task.user.name %></td>
-        </tr>
-        <tr>
-          <td>ステータス</td>
-          <td><%= @task.status %></td>
-        </tr>
-        <tr>
-          <td>優先度</td>
-          <td>
-            <%= @task.translate_priority %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <tbody>
+      <tr>
+        <td>内容</td>
+        <td><%= @task.content %></td>
+      </tr>
+      <tr>
+        <td>期限</td>
+        <td><%= @task.deadline.to_date.strftime("%Y年 %m月 %d日") %></td>
+      </tr>
+      <tr>
+        <td>担当者</td>
+        <td><%= @task.user.name %></td>
+      </tr>
+      <tr>
+        <td>ステータス</td>
+        <td><%= @task.status %></td>
+      </tr>
+      <tr>
+        <td>優先度</td>
+        <td>
+          <%= @task.translate_priority %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-  <% if current_user == @task.user %>
-    <%= link_to edit_task_path(@task), class: "btn btn-primary text-white mt-3 me-2" do %>
-      <i class="fa-solid fa-pen"></i> 編集
-    <% end %>
-    <% if @task.status != "完了" %>
-      <%= link_to assign_task_path, class: "btn btn-success mt-3 me-2" do %>
-        <i class="fa-solid fa-person"></i> アサイン
+  <div class="d-flex">
+    <div class="me-auto">
+      <%= link_to :back, class: "btn btn-outline-dark mt-3 me-2" do %>
+      <i class="fa-solid fa-backward-step"></i> 戻る
       <% end %>
-    <% end %>
-  <% end %>
-  <%= link_to :back, class: "btn btn-outline-dark mt-3 me-2" do %>
-    <i class="fa-solid fa-backward-step"></i> 戻る
-  <% end %>
-  <%= link_to tasks_path, class: "btn btn-outline-dark mt-3" do %>
-    <i class="fa-solid fa-house"></i> TOP
-  <% end %>
+    </div>
+
+    <div class="">
+      <% if current_user == @task.user %>
+        <%= link_to edit_task_path(@task), class: "btn btn-primary text-white mt-3 me-2" do %>
+        <i class="fa-solid fa-pen"></i> 編集
+        <% end %>
+        <% if @task.status != "完了" %>
+          <%= link_to assign_task_path, class: "btn btn-success mt-3 me-2" do %>
+          <i class="fa-solid fa-person"></i> アサイン
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 
   <div class="text-center">
     <h1 class="my-5">新規コメント</h1>
