@@ -2,7 +2,7 @@
   <div class="d-md-flex align-items-center">
     <h1 class="my-3 me-2"><%= title %></h1>
     <%= link_to new_task_path, class: "btn btn-outline-dark align-self-start me-auto my-3" do %>
-      <i class="fa-solid fa-plus", data-toggle="tooltip", data-placement="top", title="新規タスクを作成する"></i>
+      <i class="fa-solid fa-plus"></i> 新規タスク作成
     <% end %>
     <% if title == "タスク一覧" %>
       <%= link_to "完了タスク一覧", complete_tasks_path, class: "my-3 btn btn-outline-dark" %>
@@ -12,18 +12,14 @@
   </div>
 
   <div class="d-md-flex">
-    <div class="me-auto">
+    <div class="me-auto my-sm-0 my-2">
       <%= search_form_for @q, url: search_tasks_path do |f| %>
       <%= f.search_field :title_cont, placeholder: "タイトル" %>
       <%= f.submit '検索' %>
       <% end %>
     </div>
-    <div class="me-3">
-      <%= sort_link(@q, :priority, "優先度ソート", default_order: :desc) %>
-    </div>
-    <div class="">
-      <%= sort_link(@q, :deadline, "期限ソート") %>
-    </div>
+    <%= sort_link(@q, :priority, "優先度ソート", { default_order: :desc }, { class: "me-3" }) %>
+    <%= sort_link(@q, :deadline, "期限ソート") %>
   </div>
 
   <div class="row justify-content-between">
