@@ -32,7 +32,6 @@ RSpec.describe User, type: :model do
       password: "naoya0305",
       password_confirmation: "naoya0305"
     )
-    # user.confirm
 
     user = User.new(
       name: "Test",
