@@ -2,12 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   before do
-    @user = User.create(
-      name: "Naoya",
-      email: "naoya@naoya.com",
-      password: "naoya0305",
-      password_confirmation: "naoya0305"
-    )
+    @user = FactoryBot.create(:user)
 
     @task = @user.tasks.create(
       title: "タスク1",
