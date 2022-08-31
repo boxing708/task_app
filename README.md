@@ -42,7 +42,7 @@ Password：superstudio
 
 ##### global
 
--- em 'dotenv-rails'
+- gem 'dotenv-rails'
 - gem 'rails_12factor', group: :production
 - gem 'devise'
 - gem 'bootstrap'
