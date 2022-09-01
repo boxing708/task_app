@@ -31,8 +31,6 @@ Password：superstudio
 
 <img width="841" alt="スクリーンショット 2022-09-01 14 39 53" src="https://user-images.githubusercontent.com/107534005/187840259-318fd2a0-58fa-4fe7-8aa6-82959debaedb.png">
 
-- 期限切れタスクと期限内タスクの区別
-
 # Requirement
 
 ### 環境
