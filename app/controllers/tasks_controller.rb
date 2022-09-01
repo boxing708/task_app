@@ -1,11 +1,13 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy assign assign_update done ]
   before_action :ensure_user, only: %i[ edit update destroy assign ]
-  before_action :set_q, only: %i[ index search done ]
   before_action :authenticate_user!
 
   def index
-    @incomplete_tasks = @q.result.index_all.where.not(status: "完了").page(params[:page])
+    @incomplete_tasks = Task.index_all.where.not(status: "完了").page(params[:page])
+
+    @q = @incomplete_tasks.ransack(params[:q])
+    @incomplete_tasks = @q.result.includes(:user).page(params[:page])
   end
 
   def complete_tasks
@@ -71,15 +73,7 @@ class TasksController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def search
-    @results = @q.result.includes(:user).page(params[:page])
-  end
-
   private
-
-    def set_q
-      @q = Task.ransack(params[:q])
-    end
 
     def ensure_user
       @tasks = current_user.tasks
