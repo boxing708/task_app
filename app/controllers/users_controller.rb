@@ -15,6 +15,9 @@ class UsersController < ApplicationController
 
   def mytask
     @incomplete_tasks = @q.result.where(user_id: current_user.id).includes(:user).where.not(status: "完了").page(params[:page])
+
+    @q = @incomplete_tasks.ransack(params[:q])
+    @incomplete_tasks = @q.result.includes(:user).page(params[:page])
   end
 
   def complete_mytasks

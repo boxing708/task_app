@@ -6,16 +6,23 @@
     <% end %>
     <% if title == "タスク一覧" %>
       <%= link_to "完了タスク一覧", complete_tasks_path, class: "my-3 btn btn-outline-dark" %>
-    <% else %>
+    <% elsif title == "マイタスク"  %>
       <%= link_to "完了マイタスク一覧", complete_mytasks_path, class: "my-3 btn btn-outline-dark" %>
     <% end %>
   </div>
 
   <div class="d-md-flex">
     <div class="me-auto my-sm-0 my-2">
-      <%= search_form_for @q do |f| %>
-      <%= f.search_field :title_cont, placeholder: "タイトル" %>
-      <%= f.submit '検索' %>
+      <% if title == "タスク一覧" %>
+        <%= search_form_for @q do |f| %>
+          <%= f.search_field :title_cont, placeholder: "タイトル" %>
+          <%= f.submit '検索' %>
+        <% end %>
+      <% elsif title == "マイタスク" %>
+        <%= search_form_for @q, url: mytask_path do |f| %>
+          <%= f.search_field :title_cont, placeholder: "タイトル" %>
+          <%= f.submit '検索' %>
+        <% end %>
       <% end %>
     </div>
     <%= sort_link(@q, :priority, "優先度ソート", { default_order: :desc }, { class: "me-3" }) %>
