@@ -12,15 +12,15 @@
   </div>
 
   <div class="d-md-flex">
-    <div class="me-auto my-sm-0 my-2">
+    <div class="me-auto my-md-0 my-2">
       <% if title == "タスク一覧" %>
         <%= search_form_for @q do |f| %>
-          <%= f.search_field :title_cont, placeholder: "タイトル" %>
+          <%= f.search_field :title_cont, placeholder: "タイトル", maxlength: 100, size: 32 %>
           <%= f.submit '検索' %>
         <% end %>
       <% elsif title == "マイタスク" %>
         <%= search_form_for @q, url: mytask_path do |f| %>
-          <%= f.search_field :title_cont, placeholder: "タイトル" %>
+          <%= f.search_field :title_cont, placeholder: "タイトル", maxlength: 100, size: 32 %>
           <%= f.submit '検索' %>
         <% end %>
       <% end %>
