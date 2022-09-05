@@ -6,8 +6,10 @@ ja:
           attributes:
             title:
               blank: "が空になっています。入力してください。"
+              too_long: "は36文字以内で入力してください。"
             content:
               blank: "が空になっています。入力してください。"
+              too_long: "は140文字以内で入力してください。"
             deadline:
               blank: "が空になっています。入力してください。"
             status:
@@ -16,7 +18,7 @@ ja:
           attributes:
             content:
               blank: "が空になっています。入力してください。"
-              too_long: "は255文字以内にしてください。"
+              too_long: "は255文字以内で入力してください。"
     models:
       task: "タスク"
       comment: "コメント"
