@@ -44,6 +44,7 @@ class TasksController < ApplicationController
   def assign_update
     if @task.update!(task_params)
       NoticeMailer.sendmail_task(@task).deliver
+      @task.send_slack(@task.user.name)
       redirect_to task_url(@task), notice: "#{@task.user.name}さんにタスクがアサインされました。"
     end
 

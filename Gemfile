@@ -51,6 +51,8 @@ gem "font-awesome-sass", "~> 6.1.2"
 
 gem 'ransack'
 
+gem 'slack-ruby-client'
+
 group :development, :test do
   # Use mysql as the database for Active Record
   gem 'mysql2', '>= 0.4.4', '< 0.6.0'
