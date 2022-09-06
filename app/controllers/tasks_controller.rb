@@ -76,8 +76,7 @@ class TasksController < ApplicationController
   private
 
     def ensure_user
-      @tasks = current_user.tasks
-      redirect_to tasks_url, alert: t("flash.unauthorized") unless @tasks.exists?(id: params[:id])
+      redirect_to tasks_url, alert: t("flash.unauthorized") unless current_user.tasks.exists?(id: params[:id])
     end
 
     # Use callbacks to share common setup or constraints between actions.
