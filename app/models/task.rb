@@ -26,7 +26,57 @@ class Task < ApplicationRecord
     client = Slack::Web::Client.new
     client.chat_postMessage(
       channel: '#task_app_notice',
-      text: "#{user_name}さんにタスクがアサインされました:rocket:"
+      blocks: [
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "<!here>\n#{user.name}さんにタスクがアサインされました:rocket:\n今日も暑いね:watermelon: 無理せずがんばろう:smile:"
+          }
+        },
+        {
+          "type": "header",
+          "text": {
+            "type": "plain_text",
+            "text": "何をチェックする？",
+            "emoji": true
+          }
+        },
+        {
+          "type": "actions",
+          "elements": [
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "emoji": true,
+                "text": "天気"
+              },
+              "style": "primary",
+              "url": "https://www.jma.go.jp/jp/yoho/" # 気象庁HP
+            },
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "emoji": true,
+                "text": "カレンダー"
+              },
+              "style": "danger",
+              "url": "https://calendar.google.com/" # Googleカレンダー
+            },
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "emoji": true,
+                "text": "ニュース"
+              },
+              "url": "https://news.google.co.jp/" # Googleニュース
+            }
+          ]
+        }
+      ]
     )
   end
 end
