@@ -1,9 +1,12 @@
 class CommentsController < ApplicationController
+
+  COMMENT = "コメント"
+
   def create
     @comment = current_user.comments.new(comment_params)
     if @comment.save!
       redirect_back(fallback_location: root_path,
-      notice: t('flash.create', model: "コメント"))
+      notice: t('flash.create', model: COMMENT))
     end
 
   rescue ActiveRecord::RecordInvalid => e
@@ -16,7 +19,7 @@ class CommentsController < ApplicationController
     @comment = @task.comments.find(params[:id])
     @comment.destroy
     redirect_to @task, status: :see_other,
-    notice: t('flash.destroy', model: "コメント")
+    notice: t('flash.destroy', model: COMMENT)
   end
 
   private
