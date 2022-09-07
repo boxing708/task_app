@@ -3,9 +3,12 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy assign assign_update done ]
   before_action :ensure_user, only: %i[ edit update destroy assign ]
 
+  COMPLETE_STATUS = "完了"
+  TASK = "タスク"
+
   def index
     @incomplete_tasks = Task.index_all
-                            .where.not(status: "完了")
+                            .where.not(status: COMPLETE_STATUS)
                             .page(params[:page])
 
     @q = @incomplete_tasks.ransack(params[:q])
@@ -13,7 +16,7 @@ class TasksController < ApplicationController
   end
 
   def complete_tasks
-    @complete_tasks = Task.index_all.where(status: "完了").page(params[:page])
+    @complete_tasks = Task.index_all.where(status: COMPLETE_STATUS).page(params[:page])
   end
 
   def show
@@ -31,7 +34,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user_id = current_user.id #タスクを作成した人 = 現在ログインしているユーザー
     if @task.save!
-      redirect_to task_url(@task), notice: t("flash.create", model: "タスク")
+      redirect_to task_url(@task), notice: t("flash.create", model: TASK)
     end
 
   rescue ActiveRecord::RecordInvalid => e
@@ -60,7 +63,7 @@ class TasksController < ApplicationController
 
   def update
     redirect_to task_url(@task),
-    notice: t("flash.update", model: "タスク") if @task.update!(task_params)
+    notice: t("flash.update", model: TASK) if @task.update!(task_params)
 
   rescue ActiveRecord::RecordInvalid => e
     flash.now[:alert] = e.record.errors.full_messages.join("\n")
@@ -69,7 +72,7 @@ class TasksController < ApplicationController
 
   def destroy
     redirect_back fallback_location: root_path,
-    notice: t("flash.destroy", model: "タスク") if @task.destroy!
+    notice: t("flash.destroy", model: TASK) if @task.destroy!
 
   rescue ActiveRecord::RecordInvalid => e
     flash.now[:alert] = e.record.errors.full_messages.join("\n")
@@ -77,7 +80,7 @@ class TasksController < ApplicationController
   end
 
   def done
-    @task.update(status: "完了")
+    @task.update(status: COMPLETE_STATUS)
     redirect_back(fallback_location: root_path)
   end
 
@@ -92,7 +95,7 @@ class TasksController < ApplicationController
     def set_task
       @task = Task.find(params[:id])
     rescue ActiveRecord::RecordNotFound => e
-      redirect_to tasks_url, alert: t("flash.not_exits", model: "タスク")
+      redirect_to tasks_url, alert: t("flash.not_exits", model: TASK)
     end
 
     # Only allow a list of trusted parameters through.
