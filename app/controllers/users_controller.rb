@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show ]
   before_action :authenticate_user!
+  before_action :set_user, only: %i[ show ]
   before_action :set_q, only: %i[ mytask ]
 
   def index
