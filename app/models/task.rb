@@ -35,10 +35,24 @@ class Task < ApplicationRecord
           }
         },
         {
+          "type": "actions",
+          "elements": [
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "emoji": true,
+                "text": "タスク詳細"
+              },
+              "url": "https://task-app-708.herokuapp.com/tasks/#{id}"
+            },
+          ]
+        },
+        {
           "type": "header",
           "text": {
             "type": "plain_text",
-            "text": "何をチェックする？",
+            "text": "What's next?",
             "emoji": true
           }
         },
@@ -50,10 +64,19 @@ class Task < ApplicationRecord
               "text": {
                 "type": "plain_text",
                 "emoji": true,
-                "text": "天気"
+                "text": "コメントする"
+              },
+              "url": "https://task-app-708.herokuapp.com/tasks/#{id}/#comment"
+            },
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "emoji": true,
+                "text": "マイタスク"
               },
               "style": "primary",
-              "url": "https://www.jma.go.jp/jp/yoho/" # 気象庁HP
+              "url": "https://task-app-708.herokuapp.com/mytask"
             },
             {
               "type": "button",
@@ -65,15 +88,6 @@ class Task < ApplicationRecord
               "style": "danger",
               "url": "https://calendar.google.com/" # Googleカレンダー
             },
-            {
-              "type": "button",
-              "text": {
-                "type": "plain_text",
-                "emoji": true,
-                "text": "ニュース"
-              },
-              "url": "https://news.google.co.jp/" # Googleニュース
-            }
           ]
         }
       ]
