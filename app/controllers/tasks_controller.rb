@@ -4,7 +4,9 @@ class TasksController < ApplicationController
   before_action :ensure_user, only: %i[ edit update destroy assign ]
 
   def index
-    @incomplete_tasks = Task.index_all.where.not(status: "完了").page(params[:page])
+    @incomplete_tasks = Task.index_all
+                            .where.not(status: "完了")
+                            .page(params[:page])
 
     @q = @incomplete_tasks.ransack(params[:q])
     @incomplete_tasks = @q.result.includes(:user).page(params[:page])
@@ -15,7 +17,9 @@ class TasksController < ApplicationController
   end
 
   def show
-    @comments = @task.comments.includes(user: { icon_attachment: :blob }).page(params[:page])
+    @comments = @task.comments
+                     .includes(user: { icon_attachment: :blob })
+                     .page(params[:page])
     @comment = Comment.new
   end
 
@@ -45,7 +49,8 @@ class TasksController < ApplicationController
     if @task.update!(task_params)
       NoticeMailer.sendmail_task(@task).deliver
       @task.send_slack
-      redirect_to task_url(@task), notice: "#{@task.user.name}さんにタスクがアサインされました。"
+      redirect_to task_url(@task),
+      notice: "#{@task.user.name}さんにタスクがアサインされました。"
     end
 
   rescue ActiveRecord::RecordInvalid => e
@@ -54,7 +59,8 @@ class TasksController < ApplicationController
   end
 
   def update
-    redirect_to task_url(@task), notice: t("flash.update", model: "タスク") if @task.update!(task_params)
+    redirect_to task_url(@task),
+    notice: t("flash.update", model: "タスク") if @task.update!(task_params)
 
   rescue ActiveRecord::RecordInvalid => e
     flash.now[:alert] = e.record.errors.full_messages.join("\n")
@@ -62,7 +68,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    redirect_back fallback_location: root_path, notice: t("flash.destroy", model: "タスク") if @task.destroy!
+    redirect_back fallback_location: root_path,
+    notice: t("flash.destroy", model: "タスク") if @task.destroy!
 
   rescue ActiveRecord::RecordInvalid => e
     flash.now[:alert] = e.record.errors.full_messages.join("\n")
@@ -77,7 +84,8 @@ class TasksController < ApplicationController
   private
 
     def ensure_user
-      redirect_to tasks_url, alert: t("flash.unauthorized") unless current_user.tasks.exists?(id: params[:id])
+      redirect_to tasks_url,
+      alert: t("flash.unauthorized") unless current_user.tasks.exists?(id: params[:id])
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -89,6 +97,7 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :content, :deadline, :status, :user_id, :priority)
+      params.require(:task)
+            .permit(:title, :content, :deadline, :status, :user_id, :priority)
     end
 end
