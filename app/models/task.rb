@@ -26,7 +26,71 @@ class Task < ApplicationRecord
     client = Slack::Web::Client.new
     client.chat_postMessage(
       channel: '#task_app_notice',
-      text: "#{user_name}さんにタスクがアサインされました:rocket:"
+      blocks: [
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "<!here>\n#{user.name}さんにタスクがアサインされました:rocket:\n今日も暑いね:watermelon: 無理せずがんばろう:smile:"
+          }
+        },
+        {
+          "type": "actions",
+          "elements": [
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "emoji": true,
+                "text": "タスク詳細"
+              },
+              "url": "https://task-app-708.herokuapp.com/tasks/#{id}"
+            },
+          ]
+        },
+        {
+          "type": "header",
+          "text": {
+            "type": "plain_text",
+            "text": "What's next?",
+            "emoji": true
+          }
+        },
+        {
+          "type": "actions",
+          "elements": [
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "emoji": true,
+                "text": "コメントする"
+              },
+              "url": "https://task-app-708.herokuapp.com/tasks/#{id}/#comment"
+            },
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "emoji": true,
+                "text": "マイタスク"
+              },
+              "style": "primary",
+              "url": "https://task-app-708.herokuapp.com/mytask"
+            },
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "emoji": true,
+                "text": "カレンダー"
+              },
+              "style": "danger",
+              "url": "https://calendar.google.com/" # Googleカレンダー
+            },
+          ]
+        }
+      ]
     )
   end
 end
