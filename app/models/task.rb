@@ -14,11 +14,11 @@ class Task < ApplicationRecord
 
   def translate_priority
     if self.priority == "low"
-      "低"
+      return "低"
     elsif self.priority == "middle"
-      "中"
+      return "中"
     elsif self.priority == "high"
-      "高"
+      return "高"
     end
   end
 
