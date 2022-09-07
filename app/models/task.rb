@@ -22,7 +22,7 @@ class Task < ApplicationRecord
     end
   end
 
-  def send_slack(user_name)
+  def send_slack
     client = Slack::Web::Client.new
     client.chat_postMessage(
       channel: '#task_app_notice',
