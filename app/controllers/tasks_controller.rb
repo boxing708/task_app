@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task, only: %i[ show edit update destroy assign assign_update done ]
   before_action :ensure_user, only: %i[ edit update destroy assign ]
-  before_action :authenticate_user!
 
   def index
     @incomplete_tasks = Task.index_all.where.not(status: "完了").page(params[:page])
