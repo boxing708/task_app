@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[ show ]
   before_action :set_q, only: %i[ mytask ]
 
   def index
@@ -8,6 +7,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to users_url, alert: t("flash.unauthorized")
   end
 
   def mypage
@@ -25,12 +27,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-    def set_user
-      @user = User.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to users_url, alert: t("flash.unauthorized")
-    end
 
     def set_q
       @q = Task.ransack(params[:q])
