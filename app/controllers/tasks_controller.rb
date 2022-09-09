@@ -81,7 +81,6 @@ class TasksController < ApplicationController
 
   def done
     @task.update(status: COMPLETE_STATUS)
-    redirect_back(fallback_location: root_path)
   end
 
   private
