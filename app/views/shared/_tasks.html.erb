@@ -55,7 +55,7 @@
                 <i class="fa-solid fa-trash", data-toggle="tooltip", data-placement="top", title="削除"></i>
               <% end %>
               <%= button_to done_task_path(task), method: :post, remote: true, class: "btn btn-primary" do %>
-                <i class="fa-solid fa-circle-check", data-toggle="tooltip", data-placement="top", title="完了"></i>
+                <i id="complete_button<%= task.id %>" class="fa-solid fa-circle-check", data-toggle="tooltip", data-placement="top", title="完了"></i>
               <% end %>
             <% end %>
           </div>
