@@ -22,6 +22,7 @@ Password：superstudio
 - タスクアサイン機能
 - タスクがアサインされたユーザにメール&Slackでお知らせ機能
 <img width="604" alt="スクリーンショット 2022-09-08 19 17 21" src="https://user-images.githubusercontent.com/107534005/189585672-e8ff9c9a-25dd-4490-ac5c-93ca3d7ac7cb.png">
+
 - タスク検索機能
 - タスクソート機能
 - コメント機能
